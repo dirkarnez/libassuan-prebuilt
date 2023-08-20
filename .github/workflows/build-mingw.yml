@@ -57,14 +57,8 @@ jobs:
             export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/PortableGit-2.38.1-64-bit:$workspace/PortableGit-2.38.1-64-bit/bin:$workspace/msys64/usr/bin:/usr/bin" &&
             cd libassuan && 
             g++ --version &&
-            export CPPFLAGS="$CPPFLAGS -I$libgpg_error_location/include" &&
-            export LDFLAGS="$LDFLAGS -L$libgpg_error_location/lib" &&
-            export LIBS="$LIBS -lgpg-error -lws2_32" &&
-            echo $CPPFLAGS &&
-            echo $LDFLAGS &&
-            echo $LIBS &&
             ./configure --help &&
-            ./configure --disable-shared --disable-tests --prefix="$(pwd)/${{ env.installationPath }}" &&
+            ./configure --with-libgpg-error-prefix="$libgpg_error_location" --disable-shared --disable-tests --prefix="$(pwd)/${{ env.installationPath }}" &&
             make VERBOSE=1 && make install
             
       - name: Archive Release
