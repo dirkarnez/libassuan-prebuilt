@@ -21,6 +21,11 @@ jobs:
       #     tar -jxvf libassuan-2.5.6.tar.bz2 &&^
       #     run: rename libassuan-2.5.6 libassuan
       - uses: actions/checkout@v3
+
+      - shell: cmd
+        run: |
+          tar -jxvf libassuan-2.5.6.tar.bz2 &&^
+          rename libassuan-2.5.6 libassuan
       
       - name: Install MSYS2
         uses: msys2/setup-msys2@v2
