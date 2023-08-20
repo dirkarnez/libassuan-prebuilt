@@ -51,7 +51,7 @@ jobs:
           cd libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0 &&
           ls &&
           cd .. &&
-          sed -i "s/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=$(pwd)/g" ./bin/gpg-error-config
+          sed -i 's/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=$(pwd)/g' ./bin/gpg-error-config
       
       - shell: cmd
         run: |
