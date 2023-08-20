@@ -13,7 +13,7 @@ jobs:
     env:
       libraryName: libassuan
       installationPath: libassuan-installation
-      mingwTargetZip: libgpg-error-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
+      mingwTargetZip: libassuan-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
     steps:
       - shell: cmd
         run: |
