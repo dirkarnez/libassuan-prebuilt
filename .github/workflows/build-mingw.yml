@@ -30,7 +30,8 @@ jobs:
 
       - shell: cmd
         run: |
-          curl https://github.com/dirkarnez/libgpg-error-prebuilt/releases/download/v1.47/libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -L --output l-smash-v2.14.5-x86_64-posix-seh-rev0-8.1.0.zip && dir && 7z.exe x libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -o"libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0"
+          curl https://github.com/dirkarnez/libgpg-error-prebuilt/releases/download/v1.47/libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -L -O -J &&^
+          7z.exe x libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -o"libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0"
         
       - name: curl x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z
         shell: cmd
