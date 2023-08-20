@@ -15,12 +15,13 @@ jobs:
       installationPath: libassuan-installation
       mingwTargetZip: libassuan-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
     steps:
-      - shell: cmd
-        run: |
-          curl https://gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.6.tar.bz2 -L -O -J &&^
-          tar -jxvf libassuan-2.5.6.tar.bz2 &&^
-          run: rename libassuan-2.5.6 libassuan
-          
+      # - shell: cmd
+      #   run: |
+      #     curl https://gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.6.tar.bz2 -L -O -J &&^
+      #     tar -jxvf libassuan-2.5.6.tar.bz2 &&^
+      #     run: rename libassuan-2.5.6 libassuan
+      - uses: actions/checkout@v3
+      
       - name: Install MSYS2
         uses: msys2/setup-msys2@v2
         with:
