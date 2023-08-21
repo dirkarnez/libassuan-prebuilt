@@ -51,13 +51,14 @@ jobs:
         run: |
           cd libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0 &&
           ls &&
-          echo "LIBGPG_ERROR_PATH=$(pwd)" >> "$GITHUB_OUTPUT"
+          echo "LIBGPG_ERROR_PATH=$(echo "$(pwd)" | sed -e 's/[]\/$*.^[]/\\&/g')" >> "$GITHUB_OUTPUT"
           
       - shell: msys2 {0}
         run: |
+          echo ${{ steps.set-libgpg-error-path.outputs.LIBGPG_ERROR_PATH }} &&
           cd libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0 &&
           ls &&
-          sed -i 's/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=${{ steps.set-libgpg-error-path.outputs.LIBGPG_ERROR_PATH }}/g' ./bin/gpg-error-config
+          sed -i "s/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=${{ steps.set-libgpg-error-path.outputs.LIBGPG_ERROR_PATH }}/g" ./bin/gpg-error-config
           
       - shell: cmd
         run: |
