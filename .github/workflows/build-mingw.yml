@@ -45,12 +45,19 @@ jobs:
         run: |
           .\PortableGit-2.38.1-64-bit\usr\bin\tar.exe -jxvf libassuan-2.5.6.tar.bz2 &&^
           rename libassuan-2.5.6 libassuan
+
+      - shell: msys2 {0}
+        id: set-libgpg-error-path
+        run: |
+          cd libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0 &&
+          ls &&
+          echo "LIBGPG_ERROR_PATH=$(pwd)" >> "$GITHUB_OUTPUT"
           
       - shell: msys2 {0}
         run: |
           cd libgpg-error-v1.47-mingw64-x86_64-posix-seh-rev0-8.1.0 &&
           ls &&
-          sed -i 's/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=$(pwd)/g' ./bin/gpg-error-config
+          sed -i "s/prefix=\/d\/a\/libgpg-error-prebuilt\/libgpg-error-prebuilt\/libgpg-error\/libgpg-error-installation/prefix=${{ steps.set-libgpg-error-path.outputs.LIBGPG_ERROR_PATH }}/g" ./bin/gpg-error-config
           
       - shell: cmd
         run: |
